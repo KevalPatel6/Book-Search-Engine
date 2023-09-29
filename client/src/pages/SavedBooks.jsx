@@ -12,10 +12,11 @@ import {
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
+//Returns users's saved books
 const SavedBooks = () => {
   const {loading, userData} = useQuery(QUERY_GET_ME)
 
-  return userData
+
 
 }
 

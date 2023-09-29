@@ -3,13 +3,14 @@ const { User, bookSchema } = require('../models');
 
 const resolvers = {
     Query: {
-        getSingleUser: async () => {
-            return User.findOne({ username })
+        me: async () => {
+            return User.findOne({ username }).populate('savedBooks')
+            //Do I want to populate anything here?
         }
     },
 
     Mutation: {
-        createUser: async (parent, { username, email, password }) => {
+        addUser: async (parent, { username, email, password }) => {
             const user = await User.create({ username, email, password })
             const token = signToken(user);
             return { token, user }
@@ -33,9 +34,9 @@ const resolvers = {
             return { token, user };
         },
 
-        saveBook: async (parent, {authors, description, bookId, image, link}) => {
+        saveBook: async (parent, {BookInput}) => {
             const updatedUser = await User.findOneAndUpdate(
-                { _id: user._id },
+                { _id: ID },
                 { $addToSet: { savedBooks: body } },
                 { new: true, runValidators: true }
               );
@@ -54,12 +55,6 @@ const resolvers = {
 
 
 
-
-
-
-
-
-
-
-
 }
+
+module.exports = resolvers;
