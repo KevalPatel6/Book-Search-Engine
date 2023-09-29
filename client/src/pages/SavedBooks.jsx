@@ -14,11 +14,17 @@ import { removeBookId } from '../utils/localStorage';
 
 //Returns users's saved books
 const SavedBooks = () => {
-  const {loading, userData} = useQuery(QUERY_GET_ME)
+  const { loading, error, data } = useQuery(QUERY_GET_ME);
 
+  const userData = data
 
-
-}
+  if(loading){
+    return <div>Loading...</div>;
+  }
+  
+  if(error){
+    return <div>Error: {error.message}</div>
+  }
 
 
 
@@ -32,7 +38,7 @@ const SavedBooks = () => {
 
     try {
       const [removeBook, {error, data}] = useMutation(REMOVE_BOOK)
-
+      
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
@@ -75,5 +81,5 @@ const SavedBooks = () => {
       </Container>
     </>
   );
-
+}
 export default SavedBooks;
