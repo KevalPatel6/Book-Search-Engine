@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useMutation } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-
+import {ADD_USER} from '../utils/mutations'
 import { createUser } from '../utils/API';
 import Auth from '../utils/auth';
 
@@ -28,13 +28,17 @@ const SignupForm = () => {
     }
 
     try {
-      const response = await createUser(userFormData);
+      const [addUser, {loading, error, data}] = useMutation(ADD_USER)
+
+     let response =  await addUser({
+      variables: {username: userFormData.username, email: userFormData.email, password: userFormData.password}
+     })
 
       if (!response.ok) {
-        throw new Error('something went wrong!');
+        throw new Error('Something went wrong!. Make sure all the input fields are filled out.');
       }
 
-      const { token, user } = await response.json();
+      const { token, user } = response
       console.log(user);
       Auth.login(token);
     } catch (err) {
