@@ -74,13 +74,9 @@ const SearchBooks = () => {
     }
 
     try {
-      const [saveBook, {error, data}] = useMutation(SAVE_BOOK)
-      const response = await saveBook(bookToSave, token);
-
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
+      //Use Mutation to save book
+      const [saveBook, {data}] = useMutation(SAVE_BOOK)
+    
       // if book successfully saves to user's account, save book id to state
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (err) {
