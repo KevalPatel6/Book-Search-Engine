@@ -3,9 +3,11 @@ const { User, bookSchema } = require('../models');
 
 const resolvers = {
     Query: {
-        me: async () => {
-            return User.findOne({ username }).populate('savedBooks')
-            //Do I want to populate anything here?
+        me: async (parent, args, context) => {
+            if(context.user){
+                return User.findOne({_id: context.user._id}).populate('savedBooks')
+            }
+            throw AuthenticationError
         }
     },
 
@@ -16,7 +18,7 @@ const resolvers = {
             return { token, user }
         },
 
-        login: async () => {
+        login: async (parent, {email, password, username}) => {
             const user = await User.findOne({ $or: [{email},{username}]});
 
             if (!user) {
@@ -34,18 +36,18 @@ const resolvers = {
             return { token, user };
         },
 
-        saveBook: async (parent, {BookInput}) => {
+        saveBook: async (parent, {input}, context) => {
             const updatedUser = await User.findOneAndUpdate(
-                { _id: ID },
-                { $addToSet: { savedBooks: body } },
+                { _id: context.user._id },
+                { $addToSet: { savedBooks: input } },
                 { new: true, runValidators: true }
               );
               return updatedUser
         },
 
-        deleteBook: async (parent, {bookId}) => {
+        deleteBook: async (parent, {bookId}, context) => {
             const updatedUser = await User.findOneAndUpdate(
-                { bookId: bookId},
+                { _id: context.user._id},
                 { $pull: { savedBooks: { bookId } } },
                 { new: true }
               );
