@@ -35,6 +35,10 @@ First go to the repository link >>> [Here](https://github.com/KevalPatel6/Book-S
 5. View your saved books on the "Saved Books" page.
 6. To remove a book from your saved list, click "Delete This Book."
 
+
+## Credits
+
+I would like give credit to chat.openai.com for helping me with a lot of error handling and syntax errors in my code. I would like to give credit to AskBCS for issues with the saveBook not working and the savedBooks page not loading. 
 ## License
 
 MIT License
