@@ -1,5 +1,5 @@
 const { signToken, AuthenticationError } = require('../utils/auth');
-const { User, bookSchema } = require('../models');
+const { User } = require('../models');
 
 const resolvers = {
     Query: {
@@ -7,7 +7,7 @@ const resolvers = {
             if(context.user){
                 return User.findOne({_id: context.user._id}).populate('savedBooks')
             }
-            throw AuthenticationError
+            throw new AuthenticationError('User not authenticated')
         }
     },
 
@@ -22,7 +22,7 @@ const resolvers = {
             const user = await User.findOne({ $or: [{email},{username}]});
 
             if (!user) {
-                throw AuthenticationError;
+                throw new AuthenticationError('User not authenticated')
             }
 
             const correctPw = await user.isCorrectPassword(password);
@@ -45,7 +45,7 @@ const resolvers = {
               return updatedUser
         },
 
-        deleteBook: async (parent, {bookId}, context) => {
+        removeBook: async (parent, {bookId}, context) => {
             const updatedUser = await User.findOneAndUpdate(
                 { _id: context.user._id},
                 { $pull: { savedBooks: { bookId } } },
@@ -54,9 +54,6 @@ const resolvers = {
               return updatedUser
         },
     }
-
-
-
 }
 
 module.exports = resolvers;
