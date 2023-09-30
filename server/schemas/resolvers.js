@@ -7,7 +7,7 @@ const resolvers = {
             if(context.user){
                 return User.findOne({_id: context.user._id}).populate('savedBooks')
             }
-            throw new AuthenticationError('User not authenticated')
+            throw AuthenticationError
         }
     },
 
@@ -22,7 +22,7 @@ const resolvers = {
             const user = await User.findOne({ $or: [{email},{username}]});
 
             if (!user) {
-                throw new AuthenticationError('User not authenticated')
+                throw AuthenticationError
             }
 
             const correctPw = await user.isCorrectPassword(password);
