@@ -1,5 +1,6 @@
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_GET_ME } from '../utils/queries';
+import { QUERY_GET_ME} from '../utils/queries';
+import { REMOVE_BOOK } from '../utils/mutations';
 import {
   Container,
   Card,
@@ -16,8 +17,9 @@ const SavedBooks = () => {
   const { loading, error, data } = useQuery(QUERY_GET_ME);
   const [removeBook] = useMutation(REMOVE_BOOK);
   
-
-  const userData = data.me
+  If(Auth.loggedIn() && Auth.getProfile())
+  console.log(data)
+  const userData = data 
 
   if(loading){
     return <div>Loading...</div>;
