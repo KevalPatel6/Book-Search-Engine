@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
 //Constructing main GraphQL API endpoint
-const httpLink = new ApolloClient({
+const httpLink = createHttpLink({
   uri: '/graphql'
 })
 

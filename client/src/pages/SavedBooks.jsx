@@ -1,5 +1,4 @@
 import { useQuery, useMutation } from '@apollo/client';
-import { useState, useEffect } from 'react';
 import { QUERY_GET_ME } from '../utils/queries';
 import {
   Container,
