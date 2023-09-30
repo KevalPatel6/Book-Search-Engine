@@ -17,9 +17,9 @@ const SavedBooks = () => {
   const { loading, error, data } = useQuery(QUERY_GET_ME);
   const [removeBook] = useMutation(REMOVE_BOOK);
   
-  If(Auth.loggedIn() && Auth.getProfile())
+  if(Auth.loggedIn() && Auth.getProfile())
   console.log(data)
-  const userData = data 
+  const userData = data?.me || {};
 
   if(loading){
     return <div>Loading...</div>;
