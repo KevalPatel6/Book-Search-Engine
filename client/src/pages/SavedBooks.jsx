@@ -35,9 +35,10 @@ const SavedBooks = () => {
     if (!token) {
       return false;
     }
-
+    console.log(bookId)
     try {
       await removeBook({
+      
         variables: {bookId}
       })
         

@@ -76,15 +76,23 @@ const SearchBooks = () => {
 
     try {
       //Use Mutation to save book
+      // console.log({
+      //   title: bookToSave.title,
+      //   authors: bookToSave.authors,
+      //   bookId: bookToSave.bookId,
+      //   description: bookToSave.description,
+      //   image: bookToSave.image,
+      //   link: bookToSave.link
+      // })
+      console.log(bookToSave)
         await saveBook({
-          variables: {input: {
-            title: bookToSave.title,
-            authors: bookToSave.authors,
-            bookID: bookToSave.bookId,
-            description: bookToSave.description,
-            image: bookToSave.image,
-            link: bookToSave.link
-          }}
+          variables: {
+            input: {  title: bookToSave.title,
+              authors: bookToSave.authors,
+              bookId: bookToSave.bookId,
+              description: bookToSave.description,
+              image: bookToSave.image,
+              link: bookToSave.link}}
         })
     
       // if book successfully saves to user's account, save book id to state
