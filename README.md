@@ -28,13 +28,33 @@ First go to the repository link >>> [Here](https://github.com/KevalPatel6/Book-S
 
 ## Usage
 
-1. Register for an account or log in if you already have one.
-2. Use the search bar to find books by title, author, or keywords.
-3. A list of books will appear. You can scroll to the book you would like to see and view its details. 
-4. To save a book to your profile, click "Save This Book."
-5. View your saved books on the "Saved Books" page.
-6. To remove a book from your saved list, click "Delete This Book."
+In order to use this application. Go to the landing page [HERE](https://book-search-engine-239558-65c331b844b6.herokuapp.com/).
 
+The landing page should look like the screen shot below. 
+
+![Alt text](Assets/Landing-Page.PNG)
+
+1. Click the 'Login/Sign Up' button in the  top right of the page to Register for an account or log in if you already have one. See Screenshot below.
+
+![Alt text](Assets/Login-Signup.PNG)
+
+2. Use the search bar to find books by title, author, or keywords. After searching for 'How to kill a Mockingbird', you will see the results populate below the search bar. See Screenshot below.
+
+![Alt text](Assets/Search.PNG)
+
+
+3. A list of books will appear. You can scroll to the book you would like to see and view its details. 
+4. To save a book to your profile, scroll down past the book's description and click "Save This Book." See Screenshot below.
+
+![Alt text](Assets/Save-Book.PNG)
+
+5. Once a book is saved, the button will change to 'This book has already been saved". You can view your saved books by clicking on the 'See Your Books' in the navigation bar. See Screen Shot Below for this page.
+
+![Alt text](Assets/Saved-Book-Page.PNG)
+
+6. To remove a book from your saved list, scroll down past the book description and click "Delete This Book." The book will be removed from your page. See Screenshot below.
+
+![Alt text](Assets/Delete-Book.PNG)
 
 ## Credits
 
